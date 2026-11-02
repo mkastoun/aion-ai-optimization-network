@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aion-network"
+version = "0.6.0.dev0"
+description = "Experimental AI-assisted compiler optimization research platform"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = []
+keywords = ["clang", "benchmarking", "compiler", "optimization", "research"]
+classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3", "Operating System :: POSIX :: Linux", "Operating System :: MacOS", "Operating System :: Microsoft :: Windows"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "build>=1,<2", "PyYAML>=6,<7"]
+
+[project.scripts]
+aion = "aion.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aion = ["workloads/*.cpp", "workloads/*.hpp", "workloads/*.json", "workloads/*/*.cpp", "workloads/*/*.hpp", "helpers/*.cpp", "research_sources/*.cpp", "research_sources/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = ["integration: requires a working local Clang C++ toolchain", "posix: requires POSIX resource accounting"]

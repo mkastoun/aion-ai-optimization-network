@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "workloads": {
+    "array": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "2998993999"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "23929194102"
+      },
+      {
+        "name": "large",
+        "args": [
+          "2000000",
+          "1234567",
+          "1"
+        ],
+        "expected": "38655227191736242"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "257",
+          "8675309",
+          "2"
+        ],
+        "expected": "9669039709408"
+      }
+    ],
+    "sorting": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "1013904223"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "8676567898"
+      },
+      {
+        "name": "large",
+        "args": [
+          "200000",
+          "1234567",
+          "1"
+        ],
+        "expected": "5160600236691445"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "257",
+          "8675309",
+          "2"
+        ],
+        "expected": "13138089576040"
+      }
+    ],
+    "hashmap": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "1013904223"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "8288662721"
+      },
+      {
+        "name": "large",
+        "args": [
+          "200000",
+          "1234567",
+          "1"
+        ],
+        "expected": "3010716378819851"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "257",
+          "8675309",
+          "2"
+        ],
+        "expected": "7422858263343"
+      }
+    ],
+    "matrix": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "60"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "3968"
+      },
+      {
+        "name": "large",
+        "args": [
+          "256",
+          "1234567",
+          "1"
+        ],
+        "expected": "10745300538"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "128",
+          "8675309",
+          "2"
+        ],
+        "expected": "2671750657"
+      }
+    ],
+    "strings": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "72"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "703"
+      },
+      {
+        "name": "large",
+        "args": [
+          "2000000",
+          "1234567",
+          "1"
+        ],
+        "expected": "930766971"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "257",
+          "8675309",
+          "2"
+        ],
+        "expected": "235998"
+      }
+    ],
+    "records": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "11254285599786532523"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "8775900889493444418"
+      },
+      {
+        "name": "large",
+        "args": [
+          "80000",
+          "1234567",
+          "1"
+        ],
+        "expected": "11384806198134564672"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "257",
+          "8675309",
+          "2"
+        ],
+        "expected": "1523056701391129032"
+      }
+    ],
+    "graph": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "3948339733465226581"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "2701470646646692482"
+      },
+      {
+        "name": "large",
+        "args": [
+          "8000",
+          "1234567",
+          "1"
+        ],
+        "expected": "8352252011315818875"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "257",
+          "8675309",
+          "2"
+        ],
+        "expected": "11336631354570542839"
+      }
+    ],
+    "logs": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "7632769007994721728"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "11528795255374785102"
+      },
+      {
+        "name": "large",
+        "args": [
+          "120000",
+          "1234567",
+          "1"
+        ],
+        "expected": "11131304355013847725"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "257",
+          "8675309",
+          "2"
+        ],
+        "expected": "6256476798287792541"
+      }
+    ],
+    "image": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "9053613987467229719"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "4699506394149262652"
+      },
+      {
+        "name": "large",
+        "args": [
+          "512",
+          "1234567",
+          "1"
+        ],
+        "expected": "6500571374410228968"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "256",
+          "8675309",
+          "2"
+        ],
+        "expected": "2946042599609126453"
+      },
+      {
+        "name": "flat-or-hotspot",
+        "args": [
+          "32",
+          "0",
+          "2"
+        ],
+        "expected": "7196522280441840748"
+      },
+      {
+        "name": "checkerboard-or-sequential",
+        "args": [
+          "32",
+          "4294967295",
+          "2"
+        ],
+        "expected": "17760790953056192746"
+      }
+    ],
+    "kv": [
+      {
+        "name": "singleton",
+        "args": [
+          "1",
+          "0",
+          "1"
+        ],
+        "expected": "17142768681033604096"
+      },
+      {
+        "name": "two-elements-wrap",
+        "args": [
+          "2",
+          "4294967294",
+          "3"
+        ],
+        "expected": "2708024066512957046"
+      },
+      {
+        "name": "large",
+        "args": [
+          "60000",
+          "1234567",
+          "1"
+        ],
+        "expected": "13713331103947072252"
+      },
+      {
+        "name": "fresh-seed",
+        "args": [
+          "257",
+          "8675309",
+          "2"
+        ],
+        "expected": "13245702071115034791"
+      },
+      {
+        "name": "flat-or-hotspot",
+        "args": [
+          "1024",
+          "0",
+          "2"
+        ],
+        "expected": "16263397002266811976"
+      },
+      {
+        "name": "checkerboard-or-sequential",
+        "args": [
+          "1024",
+          "4294967295",
+          "2"
+        ],
+        "expected": "15296821616582062472"
+      }
+    ]
+  }
+}

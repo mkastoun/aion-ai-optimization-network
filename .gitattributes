@@ -1,0 +1,8 @@
+# Normalize new project text while preserving trusted/historical input bytes.
+* text=auto eol=lf
+src/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+docs/phase[1-5]-*.md -text whitespace=trailing-space,space-before-tab,cr-at-eol
+*.whl binary
+*.png binary
+*.jpg binary
+*.pdf binary

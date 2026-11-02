@@ -1,0 +1,650 @@
+{
+  "schema_version": 1,
+  "workloads": {
+    "array": {
+      "source": "array.cpp",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "0"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "144930403364"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "618021518374"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "1000000",
+            "42",
+            "16"
+          ],
+          "expected": "309154606230939392"
+        },
+        {
+          "name": "training",
+          "args": [
+            "1000000",
+            "271828",
+            "2"
+          ],
+          "expected": "38628816693555179"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "1000000",
+            "314159",
+            "16"
+          ],
+          "expected": "309245630499590568"
+        }
+      ]
+    },
+    "sorting": {
+      "source": "sorting.cpp",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "0"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "170644628255"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "908787538296"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "100000",
+            "42",
+            "10"
+          ],
+          "expected": "25805760603213445"
+        },
+        {
+          "name": "training",
+          "args": [
+            "100000",
+            "271828",
+            "2"
+          ],
+          "expected": "5158391186766497"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "100000",
+            "314159",
+            "10"
+          ],
+          "expected": "25762052606277970"
+        }
+      ]
+    },
+    "hashmap": {
+      "source": "hashmap.cpp",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "0"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "80119006316"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "402553374161"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "100000",
+            "42",
+            "10"
+          ],
+          "expected": "15062395150195721"
+        },
+        {
+          "name": "training",
+          "args": [
+            "100000",
+            "271828",
+            "2"
+          ],
+          "expected": "3010280552831702"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "100000",
+            "314159",
+            "10"
+          ],
+          "expected": "15031875143121939"
+        }
+      ]
+    },
+    "matrix": {
+      "source": "matrix.cpp",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "0"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "558601"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "6044630"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "128",
+            "42",
+            "12"
+          ],
+          "expected": "16077661188"
+        },
+        {
+          "name": "training",
+          "args": [
+            "128",
+            "271828",
+            "2"
+          ],
+          "expected": "2675384073"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "128",
+            "314159",
+            "12"
+          ],
+          "expected": "16102746290"
+        }
+      ]
+    },
+    "strings": {
+      "source": "strings.cpp",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "0"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "6318"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "13375"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "1000000",
+            "42",
+            "16"
+          ],
+          "expected": "7444453877"
+        },
+        {
+          "name": "training",
+          "args": [
+            "1000000",
+            "271828",
+            "2"
+          ],
+          "expected": "930499519"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "1000000",
+            "314159",
+            "16"
+          ],
+          "expected": "7444370721"
+        }
+      ]
+    },
+    "records": {
+      "sources": [
+        "records/main.cpp",
+        "records/parser.cpp",
+        "records/aggregate.cpp",
+        "records/format.cpp"
+      ],
+      "headers": [
+        "common.hpp",
+        "application.hpp",
+        "records/records.hpp"
+      ],
+      "category": "applications",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "4190797939385569840"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "8097239690336758515"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "2741361397547884894"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "40000",
+            "42",
+            "3"
+          ],
+          "expected": "3201083945743255000"
+        },
+        {
+          "name": "training",
+          "args": [
+            "40000",
+            "271828",
+            "2"
+          ],
+          "expected": "7242923351434605314"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "40000",
+            "314159",
+            "3"
+          ],
+          "expected": "13874590659708195817"
+        }
+      ]
+    },
+    "graph": {
+      "sources": [
+        "graph/main.cpp",
+        "graph/graph.cpp",
+        "graph/routing.cpp",
+        "graph/report.cpp"
+      ],
+      "headers": [
+        "common.hpp",
+        "application.hpp",
+        "graph/graph.hpp"
+      ],
+      "category": "applications",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "16361840919204124712"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "14232150176910933101"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "1643679982520115091"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "4000",
+            "42",
+            "3"
+          ],
+          "expected": "8636319188221405240"
+        },
+        {
+          "name": "training",
+          "args": [
+            "4000",
+            "271828",
+            "2"
+          ],
+          "expected": "15919619053802404423"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "4000",
+            "314159",
+            "3"
+          ],
+          "expected": "6478784564603144928"
+        }
+      ]
+    },
+    "logs": {
+      "sources": [
+        "logs/main.cpp",
+        "logs/parser.cpp",
+        "logs/aggregate.cpp",
+        "logs/format.cpp"
+      ],
+      "headers": [
+        "common.hpp",
+        "application.hpp",
+        "logs/logs.hpp"
+      ],
+      "category": "applications",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "12707264140576849580"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "14946268277840292847"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "16836417668037557483"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "60000",
+            "42",
+            "3"
+          ],
+          "expected": "5319558210317587039"
+        },
+        {
+          "name": "training",
+          "args": [
+            "60000",
+            "271828",
+            "2"
+          ],
+          "expected": "17421563132136778589"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "60000",
+            "314159",
+            "3"
+          ],
+          "expected": "18040756749436155660"
+        }
+      ]
+    },
+    "image": {
+      "sources": [
+        "image/main.cpp",
+        "image/filter.cpp",
+        "image/edges.cpp",
+        "image/format.cpp"
+      ],
+      "headers": [
+        "common.hpp",
+        "application.hpp",
+        "image/image.hpp"
+      ],
+      "category": "applications",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "16241351173072661056"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "11510762125785341989"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "15649944918928723676"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "256",
+            "42",
+            "3"
+          ],
+          "expected": "8875361274462579019"
+        },
+        {
+          "name": "training",
+          "args": [
+            "256",
+            "271828",
+            "2"
+          ],
+          "expected": "15770585267620921920"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "256",
+            "314159",
+            "3"
+          ],
+          "expected": "9145650152139190685"
+        }
+      ]
+    },
+    "kv": {
+      "sources": [
+        "kv/main.cpp",
+        "kv/store.cpp",
+        "kv/process.cpp",
+        "kv/format.cpp"
+      ],
+      "headers": [
+        "common.hpp",
+        "application.hpp",
+        "kv/kv.hpp"
+      ],
+      "category": "applications",
+      "cases": [
+        {
+          "name": "empty",
+          "args": [
+            "0",
+            "1",
+            "1"
+          ],
+          "expected": "17722939744182676799"
+        },
+        {
+          "name": "small",
+          "args": [
+            "7",
+            "123",
+            "3"
+          ],
+          "expected": "1065303684389108545"
+        },
+        {
+          "name": "alternate",
+          "args": [
+            "17",
+            "4294967295",
+            "2"
+          ],
+          "expected": "12778719536982804171"
+        },
+        {
+          "name": "performance",
+          "args": [
+            "30000",
+            "42",
+            "3"
+          ],
+          "expected": "2397588528516200269"
+        },
+        {
+          "name": "training",
+          "args": [
+            "30000",
+            "271828",
+            "2"
+          ],
+          "expected": "1393034832252339350"
+        },
+        {
+          "name": "confirmation",
+          "args": [
+            "30000",
+            "314159",
+            "3"
+          ],
+          "expected": "10798084639461472598"
+        }
+      ]
+    }
+  }
+}

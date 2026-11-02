@@ -1,0 +1,99 @@
+name: AION compatibility
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  compatibility:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            platform: linux
+          - os: windows-latest
+            platform: windows
+          - os: macos-15
+            platform: macos-arm64
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    env:
+      AION_REQUIRE_COMPILER: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # verified v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # verified v7
+        with:
+          python-version: "3.12"
+      - name: Linux toolchain
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y clang llvm lld g++
+      - name: Homebrew upstream LLVM 18 and ARM64 check
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          test "$(uname -m)" = arm64
+          brew install llvm@18
+          aion_sdk="$(xcrun --sdk macosx --show-sdk-path)"
+          echo "SDKROOT=$aion_sdk" >> "$GITHUB_ENV"
+          echo "$(brew --prefix llvm@18)/bin" >> "$GITHUB_PATH"
+          echo "AION_CXX=$(brew --prefix llvm@18)/bin/clang++" >> "$GITHUB_ENV"
+          echo "AION_LLVM_BIN=$(brew --prefix llvm@18)/bin" >> "$GITHUB_ENV"
+      - name: Windows C++ SDK environment
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vs = & $vswhere -latest -products '*' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $vs) { throw 'Visual Studio C++ tools unavailable' }
+          Import-Module "$vs\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
+          Enter-VsDevShell -VsInstallPath $vs -SkipAutomaticLocation -DevCmdArguments '-arch=x64 -host_arch=x64'
+          foreach ($key in @('INCLUDE','LIB','LIBPATH','PATH')) {
+            $value = [Environment]::GetEnvironmentVariable($key)
+            "$key=$value" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          }
+          'C:\Program Files\LLVM\bin' | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Isolated development environment
+        shell: bash
+        run: |
+          python -m venv .venv-ci
+          if [ "$RUNNER_OS" = Windows ]; then bin=.venv-ci/Scripts; else bin=.venv-ci/bin; fi
+          "$bin/python" -m pip install -e '.[dev]'
+          echo "AION_CI_PYTHON=$(pwd)/$bin/python" >> "$GITHUB_ENV"
+      - name: Tests, real compilation and CLI
+        shell: bash
+        run: |
+          "$AION_CI_PYTHON" -m aion doctor --json
+          "$AION_CI_PYTHON" -m pytest -q --junitxml=test-results.xml
+      - name: Build wheel and source distribution
+        shell: bash
+        run: '"$AION_CI_PYTHON" -m build'
+      - name: Clean wheel install and bounded functionality smoke
+        shell: bash
+        run: |
+          tempdir="$RUNNER_TEMP"
+          workdir="$GITHUB_WORKSPACE"
+          if [ "$RUNNER_OS" = Windows ]; then tempdir="$(cygpath -u "$RUNNER_TEMP")"; workdir="$(cygpath -u "$GITHUB_WORKSPACE")"; fi
+          "$AION_CI_PYTHON" -m venv "$tempdir/aion-wheel-venv"
+          if [ "$RUNNER_OS" = Windows ]; then wheelpy="$tempdir/aion-wheel-venv/Scripts/python.exe"; else wheelpy="$tempdir/aion-wheel-venv/bin/python"; fi
+          "$wheelpy" -m pip install --no-index --no-deps "$workdir/dist/aion_network-0.6.0.dev0-py3-none-any.whl"
+          cd "$tempdir"
+          extra=()
+          if [ "$RUNNER_OS" != Windows ]; then extra=(--mvp); fi
+          "$wheelpy" "$workdir/tools/installed_smoke.py" --store "$workdir/.aion/ci-wheel" "${extra[@]}"
+      - name: Intended public tree audit
+        shell: bash
+        run: '"$AION_CI_PYTHON" tools/public_audit.py --output .aion/public-audit.json'
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # verified v7
+        if: always()
+        with:
+          name: compatibility-${{ matrix.platform }}
+          include-hidden-files: true
+          path: |
+            test-results.xml
+            .aion/ci-wheel/
+            .aion/public-audit.json
+            dist/
